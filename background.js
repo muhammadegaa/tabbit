@@ -149,6 +149,93 @@ class TabMindBackground {
                     sendResponse({ success: true });
                     break;
 
+                case 'GET_AUTH_STATE':
+                    try {
+                        // Return dummy auth state for now - will implement Firebase later
+                        sendResponse({ 
+                            success: true, 
+                            user: null,
+                            subscription: { plan: 'trial', analysesLeft: 1 }
+                        });
+                    } catch (error) {
+                        sendResponse({ error: error.message });
+                    }
+                    break;
+
+                case 'SIGN_IN_GOOGLE':
+                    try {
+                        // Use Chrome Identity API for Google sign-in
+                        chrome.identity.getAuthToken({ interactive: true }, (token) => {
+                            if (chrome.runtime.lastError) {
+                                sendResponse({ error: chrome.runtime.lastError.message });
+                            } else if (token) {
+                                // For now, just return success - will implement Firebase user creation later
+                                sendResponse({ 
+                                    success: true, 
+                                    user: { 
+                                        email: 'user@example.com', 
+                                        name: 'Test User' 
+                                    }
+                                });
+                            } else {
+                                sendResponse({ error: 'No token received' });
+                            }
+                        });
+                        return true; // Keep message channel open for async response
+                    } catch (error) {
+                        sendResponse({ error: error.message });
+                    }
+                    break;
+
+                case 'SIGN_IN_ANONYMOUS':
+                    try {
+                        // Anonymous sign-in simulation
+                        sendResponse({ 
+                            success: true, 
+                            user: { 
+                                email: 'anonymous@tabbit.app', 
+                                name: 'Anonymous User' 
+                            }
+                        });
+                    } catch (error) {
+                        sendResponse({ error: error.message });
+                    }
+                    break;
+
+                case 'SIGN_OUT':
+                    try {
+                        // Clear auth token and user data
+                        chrome.identity.removeCachedAuthToken({ token: '' }, () => {
+                            sendResponse({ success: true });
+                        });
+                        return true; // Keep message channel open for async response
+                    } catch (error) {
+                        sendResponse({ error: error.message });
+                    }
+                    break;
+
+                case 'CREATE_CHECKOUT_SESSION':
+                    try {
+                        // Redirect to Stripe checkout
+                        const checkoutUrl = `https://tabmind-60aqwm707-shortsys-projects.vercel.app/api/create-checkout-session?plan=${request.plan}`;
+                        chrome.tabs.create({ url: checkoutUrl });
+                        sendResponse({ success: true });
+                    } catch (error) {
+                        sendResponse({ error: error.message });
+                    }
+                    break;
+
+                case 'CREATE_PORTAL_SESSION':
+                    try {
+                        // Redirect to Stripe customer portal
+                        const portalUrl = `https://tabmind-60aqwm707-shortsys-projects.vercel.app/api/create-portal-session`;
+                        chrome.tabs.create({ url: portalUrl });
+                        sendResponse({ success: true });
+                    } catch (error) {
+                        sendResponse({ error: error.message });
+                    }
+                    break;
+
                 case 'TRIGGER_AUTOMATION':
                     console.log('Manual automation trigger received');
                     console.log('this.runTabAutomation exists:', typeof this.runTabAutomation);

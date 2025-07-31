@@ -4,6 +4,7 @@ import { initializeApp } from 'firebase/app';
 import { 
   getAuth, 
   signInWithPopup, 
+  signInWithCredential,
   GoogleAuthProvider, 
   signOut,
   onAuthStateChanged,
@@ -32,18 +33,45 @@ export class AuthService {
   }
 
   /**
-   * Sign in with Google popup
+   * Sign in with Google using Chrome Identity API
    */
   async signInWithGoogle(): Promise<User> {
     try {
-      const result = await signInWithPopup(this.auth, this.googleProvider);
-      const firebaseUser = result.user;
-      
-      // Create or update user document in Firestore
-      const user = await this.createOrUpdateUser(firebaseUser);
-      
-      console.log('Successfully signed in with Google:', user.email);
-      return user;
+      // Use Chrome Identity API for extension
+      if (typeof chrome !== 'undefined' && chrome.identity) {
+        const token = await new Promise<string>((resolve, reject) => {
+          chrome.identity.getAuthToken({ interactive: true }, (token) => {
+            if (chrome.runtime.lastError) {
+              reject(new Error(chrome.runtime.lastError.message));
+            } else if (token) {
+              resolve(token);
+            } else {
+              reject(new Error('No token received'));
+            }
+          });
+        });
+        
+        // Use token to sign in to Firebase
+        const credential = GoogleAuthProvider.credential(null, token);
+        const result = await signInWithCredential(this.auth, credential);
+        const firebaseUser = result.user;
+        
+        // Create or update user document in Firestore
+        const user = await this.createOrUpdateUser(firebaseUser);
+        
+        console.log('Successfully signed in with Google via Chrome Identity:', user.email);
+        return user;
+      } else {
+        // Fallback to popup for web (shouldn't happen in extension)
+        const result = await signInWithPopup(this.auth, this.googleProvider);
+        const firebaseUser = result.user;
+        
+        // Create or update user document in Firestore
+        const user = await this.createOrUpdateUser(firebaseUser);
+        
+        console.log('Successfully signed in with Google:', user.email);
+        return user;
+      }
       
     } catch (error: any) {
       console.error('Error signing in with Google:', error);

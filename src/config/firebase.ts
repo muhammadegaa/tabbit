@@ -1,6 +1,7 @@
 // Firebase Configuration
 // Updated with actual project credentials
 
+// TODO: Replace with your actual Firebase config
 export const firebaseConfig = {
   apiKey: "AIzaSyAElxUotdZ5RiO-GWs0wjBZpc6vhbt9AuY",
   authDomain: "tabbit-f3fd7.firebaseapp.com",
