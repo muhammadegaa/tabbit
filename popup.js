@@ -235,7 +235,7 @@ class TabbitPopup {
             this.showLoading('Redirecting to checkout...');
             const response = await chrome.runtime.sendMessage({ 
                 type: 'CREATE_CHECKOUT_SESSION',
-                priceId: 'price_1RqgXsK82harqV5s75vhLiD5' // Pro monthly
+                priceId: 'price_your_pro_monthly_id' // Pro monthly
             });
             
             if (response && response.success) {
@@ -261,7 +261,7 @@ class TabbitPopup {
             this.showLoading('Redirecting to checkout...');
             const response = await chrome.runtime.sendMessage({ 
                 type: 'CREATE_CHECKOUT_SESSION',
-                priceId: 'price_1RqgXtK82harqV5sZXo4vWZL' // Team monthly
+                priceId: 'price_your_team_monthly_id' // Team monthly
             });
             
             if (response && response.success) {

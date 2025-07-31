@@ -1,7 +1,7 @@
 // OpenRouter API Handler for TabMind
 class OpenRouterAPI {
     constructor() {
-        this.apiKey = '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';
+        this.apiKey = 'your_openrouter_api_key_here';
         this.baseUrl = 'https://openrouter.ai/api/v1/chat/completions';
         this.model = 'anthropic/claude-3.5-sonnet';
     }

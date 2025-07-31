@@ -12,7 +12,7 @@
 ## Step 2: Configure the Extension (Optional)
 The extension comes with a pre-configured API key. If you want to use your own:
 1. Open `popup.js` in a text editor
-2. Find this line: `const API_KEY = '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';`
+2. Find this line: `const API_KEY = 'your_openrouter_api_key_here';`
 3. Replace with your actual API key
 4. Save the file
 

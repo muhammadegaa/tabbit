@@ -3,13 +3,13 @@
 
 // TODO: Replace with your actual Firebase config
 export const firebaseConfig = {
-  apiKey: "AIzaSyAElxUotdZ5RiO-GWs0wjBZpc6vhbt9AuY",
-  authDomain: "tabbit-f3fd7.firebaseapp.com",
-  projectId: "tabbit-f3fd7",
-  storageBucket: "tabbit-f3fd7.firebasestorage.app",
-  messagingSenderId: "45262224715",
-  appId: "1:45262224715:web:9989605cd1b5cb0f393cce",
-  measurementId: "G-SFE0MGVLW3"
+  apiKey: "your_firebase_api_key_here",
+  authDomain: "your_project.firebaseapp.com",
+  projectId: "your_project_id",
+  storageBucket: "your_project.firebasestorage.app",
+  messagingSenderId: "your_sender_id",
+  appId: "your_app_id",
+  measurementId: "your_measurement_id"
 };
 
 // Environment detection for development vs production

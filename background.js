@@ -622,7 +622,7 @@ class TabMindBackground {
 // Enhanced OpenRouter API Handler for Decision Copilot
 class OpenRouterAPI {
     constructor() {
-        this.API_KEY = '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';
+        this.API_KEY = 'your_openrouter_api_key_here';
         this.API_URL = 'https://openrouter.ai/api/v1/chat/completions';
     }
 

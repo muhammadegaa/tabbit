@@ -4,7 +4,7 @@ import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { SubscriptionPlan, Subscription } from '../types/user';
 
 // Stripe configuration - Updated with actual credentials
-const STRIPE_PUBLISHABLE_KEY = 'pk_test_51RqfzRK82harqV5sJSHSB3ZjtmZIe8o5Al5U1N2IMjAZPEXGMUKWVAD95Zn3McnfjsDH6jfPMJozJ3H5EPixfUVO00Q8rVTGQc';
+const STRIPE_PUBLISHABLE_KEY = 'your_stripe_publishable_key_here';
 
 // Production API base URL
 const API_BASE_URL = 'https://tabmind-j3qouq5rv-shortsys-projects.vercel.app';
@@ -12,10 +12,10 @@ const API_BASE_URL = 'https://tabmind-j3qouq5rv-shortsys-projects.vercel.app';
 // Price IDs for different plans - Updated with actual Stripe price IDs
 // Pro: $7/month, Team: $19/month (no free tier, 1 trial analysis only)
 const PRICE_IDS = {
-  pro_monthly: 'price_1RqgXsK82harqV5s75vhLiD5',
-  pro_yearly: 'price_1RqgXsK82harqV5szhhYMOIt',
-  team_monthly: 'price_1RqgXtK82harqV5sZXo4vWZL',
-  team_yearly: 'price_1RqgXtK82harqV5sBIJpkAiX'
+  pro_monthly: 'price_your_pro_monthly_id',
+  pro_yearly: 'price_your_pro_yearly_id',
+  team_monthly: 'price_your_team_monthly_id',
+  team_yearly: 'price_your_team_yearly_id'
 } as const;
 
 export interface CreateCheckoutSessionRequest {

@@ -3,7 +3,7 @@ import { TabInfo, TabAnalysis, OpenRouterRequest, OpenRouterResponse } from './t
 // Configuration for OpenRouter API
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 const DEFAULT_MODEL = 'anthropic/claude-3.5-sonnet';
-const API_KEY = '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';
+const API_KEY = 'your_openrouter_api_key_here';
 
 /**
  * Analyzes a tab using OpenRouter LLM API
