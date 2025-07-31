@@ -1,0 +1,38 @@
+# Development files
+src/
+dist/
+node_modules/
+.git/
+
+# TypeScript
+tsconfig.json
+*.ts
+!api/*.js
+
+# Extension files (not needed for web deployment)
+contentScript.js
+background.js
+popup.html
+popup.css
+popup.js
+floatingPanel.js
+openrouter.js
+manifest.json
+
+# Documentation
+*.md
+INSTALL.md
+README.md
+
+# Scripts
+scripts/
+
+# Logs and cache
+*.log
+.cache/
+.env
+.env.local
+
+# OS generated files
+.DS_Store
+Thumbs.db 

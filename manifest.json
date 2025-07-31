@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Tabbit",
+  "version": "1.0.0",
+  "description": "Browser productivity copilot that turns tab chaos into goal focus - in one click",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs",
+    "tabGroups",
+    "alarms",
+    "notifications",
+    "identity"
+  ],
+  
+  "host_permissions": [
+    "https://openrouter.ai/*",
+    "https://*.googleapis.com/*",
+    "https://*.firebaseapp.com/*",
+    "https://*.stripe.com/*",
+    "https://api.stripe.com/*"
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Tabbit - From tab chaos to goal focus"
+  },
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+} 

@@ -1,0 +1,13 @@
+{
+  "name": "tabbit-api",
+  "version": "1.0.0",
+  "description": "Serverless API for Tabbit Stripe webhooks",
+  "main": "webhook.js",
+  "dependencies": {
+    "stripe": "^14.9.0",
+    "firebase": "^10.7.1"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+} 
