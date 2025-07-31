@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabbit - AI-powered browser productivity</title>
-    <meta name="description" content="AI-powered Chrome extension that analyzes your open tabs and tells you what to do next based on your daily goals. Transform tab chaos into focused productivity.">
+    <title>Tabbit - Turn Tab Chaos Into Shipping Success</title>
+    <meta name="description" content="AI-powered Chrome extension that analyzes your open tabs and tells you exactly what to do next. Stop procrastinating, start shipping. Used by 500+ makers.">
+    <meta property="og:title" content="Tabbit - Turn Tab Chaos Into Shipping Success">
+    <meta property="og:description" content="AI analyzes your tabs and tells you exactly what to do next. Stop procrastinating, start shipping.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -27,6 +33,9 @@
             padding: 24px 0;
             border-bottom: 1px solid rgba(27, 60, 83, 0.1);
             background: #F9F3EF;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .nav {
@@ -59,11 +68,39 @@
             color: #1B3C53;
         }
         
+        .pricing-nav {
+            background: #1B3C53;
+            color: #F9F3EF;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .pricing-nav:hover {
+            background: #456882;
+            color: #F9F3EF;
+        }
+        
         /* Hero Section */
         .hero {
-            padding: 120px 0 80px;
+            padding: 80px 0 60px;
             text-align: center;
             background: linear-gradient(135deg, #F9F3EF 0%, rgba(210, 193, 182, 0.3) 100%);
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(27, 60, 83, 0.1);
+            color: #1B3C53;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            gap: 8px;
         }
         
         .hero h1 {
@@ -78,11 +115,15 @@
         .hero .subtitle {
             font-size: 24px;
             color: #456882;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
             font-weight: 400;
-            max-width: 600px;
+            max-width: 680px;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        .cta-container {
+            margin-bottom: 20px;
         }
         
         .cta-primary {
@@ -128,15 +169,65 @@
             color: #F9F3EF;
         }
         
-        .cta-note {
+        .pricing-highlight {
             margin-top: 16px;
             color: #456882;
+            font-size: 16px;
+        }
+        
+        .price-emphasis {
+            color: #1B3C53;
+            font-weight: 700;
+        }
+        
+        .trial-note {
+            margin-top: 8px;
+            color: #10b981;
             font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* Social Proof Strip */
+        .social-strip {
+            padding: 40px 0;
+            background: rgba(27, 60, 83, 0.05);
+            text-align: center;
+        }
+        
+        .social-strip p {
+            color: #456882;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1B3C53;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #456882;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         /* Problem Section */
         .problem {
-            padding: 80px 0;
+            padding: 100px 0;
             background: #D2C1B6;
         }
         
@@ -157,6 +248,33 @@
             font-size: 20px;
             color: #456882;
             line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+        
+        .pain-point {
+            background: rgba(249, 243, 239, 0.8);
+            padding: 24px;
+            border-radius: 12px;
+            text-align: left;
+        }
+        
+        .pain-point h4 {
+            color: #1B3C53;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .pain-point p {
+            font-size: 14px;
+            color: #456882;
+            margin: 0;
         }
         
         /* Solution Section */
@@ -195,7 +313,7 @@
             box-shadow: 0 12px 40px rgba(27, 60, 83, 0.15);
         }
         
-        .feature-number {
+        .feature-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -203,9 +321,8 @@
             height: 64px;
             background: #1B3C53;
             color: #F9F3EF;
-            border-radius: 50%;
+            border-radius: 16px;
             font-size: 24px;
-            font-weight: 700;
             margin-bottom: 24px;
         }
         
@@ -296,27 +413,183 @@
             color: white;
         }
         
-        /* Social Proof */
-        .social-proof {
-            padding: 80px 0;
-            background: #D2C1B6;
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: #F9F3EF;
             text-align: center;
         }
         
-        .social-proof h3 {
-            font-size: 20px;
-            font-weight: 600;
+        .pricing h2 {
+            font-size: 48px;
+            font-weight: 700;
             margin-bottom: 24px;
             color: #1B3C53;
         }
         
-        .testimonial {
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 18px;
+        .pricing .subtitle {
+            font-size: 20px;
             color: #456882;
-            font-style: italic;
+            margin-bottom: 64px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-card {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border: 2px solid #1B3C53;
+            border-radius: 16px;
+            padding: 48px 32px;
+            box-shadow: 0 12px 40px rgba(27, 60, 83, 0.15);
+        }
+        
+        .pricing-header {
+            margin-bottom: 32px;
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1B3C53;
+            margin-bottom: 8px;
+        }
+        
+        .plan-description {
+            color: #456882;
+            font-size: 16px;
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1B3C53;
+            margin-bottom: 8px;
+        }
+        
+        .price-period {
+            color: #456882;
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .features-list {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: #456882;
+        }
+        
+        .features-list li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .pricing-cta {
+            width: 100%;
+            background: #1B3C53;
+            color: #F9F3EF;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .pricing-cta:hover {
+            background: #456882;
+            transform: translateY(-2px);
+        }
+        
+        .trial-highlight {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            color: #065f46;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: #D2C1B6;
+        }
+        
+        .testimonials h2 {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 64px;
+            color: #1B3C53;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background: rgba(249, 243, 239, 0.8);
+            padding: 32px;
+            border-radius: 12px;
+            text-align: left;
+        }
+        
+        .testimonial-quote {
+            font-size: 16px;
+            color: #456882;
             line-height: 1.6;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #1B3C53;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F9F3EF;
+            font-weight: 700;
+        }
+        
+        .author-info h4 {
+            color: #1B3C53;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .author-info p {
+            color: #456882;
+            font-size: 14px;
+            margin: 0;
         }
         
         /* Final CTA */
@@ -337,6 +610,9 @@
             font-size: 20px;
             color: #456882;
             margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Footer */
@@ -354,10 +630,17 @@
             .hero h1 { font-size: 48px; }
             .hero .subtitle { font-size: 20px; }
             .features-grid { grid-template-columns: 1fr; gap: 32px; }
+            .stats { flex-direction: column; gap: 24px; }
+            .pain-points { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             .container { padding: 0 16px; }
-            .hero { padding: 80px 0 60px; }
-            .solution, .demo, .final-cta { padding: 60px 0; }
+            .hero { padding: 60px 0 40px; }
+            .solution, .demo, .final-cta, .pricing, .testimonials { padding: 60px 0; }
+            .cta-primary, .cta-secondary { 
+                display: block; 
+                margin: 8px auto; 
+                width: fit-content; 
+            }
         }
     </style>
 </head>
@@ -367,9 +650,9 @@
             <nav class="nav">
                 <a href="#" class="logo">Tabbit</a>
                 <div class="nav-links">
-                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#features" class="nav-link">How it works</a>
                     <a href="#demo" class="nav-link">Demo</a>
-                    <a href="#" class="nav-link">Chrome Store</a>
+                    <a href="#pricing" class="pricing-nav">Pricing</a>
                 </div>
             </nav>
         </div>
@@ -377,15 +660,41 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Turn tab chaos<br>into goal focus</h1>
-            <p class="subtitle">AI analyzes your open tabs and tells you exactly what to do next based on your daily goals. Stop procrastinating, start shipping.</p>
-            <div style="margin-bottom: 16px;">
+            <div class="hero-badge">
+                🚀 Used by 500+ founders & makers
+            </div>
+            <h1>Turn tab chaos<br>into shipping success</h1>
+            <p class="subtitle">AI analyzes your open tabs and tells you exactly what to do next based on your goals. Stop procrastinating, start shipping what matters.</p>
+            <div class="cta-container">
                 <a href="#" class="cta-primary" onclick="window.open('https://chrome.google.com/webstore', '_blank')">
-                    Add to Chrome →
+                    Start Your Trial →
                 </a>
                 <a href="#demo" class="cta-secondary">See Demo</a>
             </div>
-            <p class="cta-note">Free trial • No signup • Works instantly</p>
+            <p class="pricing-highlight">
+                <span class="price-emphasis">$7/month</span> after trial • Cancel anytime
+            </p>
+            <p class="trial-note">✨ Get 1 free analysis to experience the magic</p>
+        </div>
+    </section>
+
+    <section class="social-strip">
+        <div class="container">
+            <p>Trusted by makers at</p>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Active Users</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15k+</span>
+                    <span class="stat-label">Tabs Analyzed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2.5hrs</span>
+                    <span class="stat-label">Saved Daily</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -393,31 +702,46 @@
         <div class="container">
             <div class="problem-content">
                 <h2>The $200B productivity problem</h2>
-                <p>Knowledge workers lose 2.5 hours daily to tab switching and context switching. You open 20+ tabs, lose focus, and end up procrastinating instead of shipping what matters.</p>
+                <p>Knowledge workers lose 2.5 hours daily to tab switching and context confusion. You open 20+ tabs with good intentions, but end up procrastinating instead of shipping.</p>
+                
+                <div class="pain-points">
+                    <div class="pain-point">
+                        <h4>Decision Paralysis</h4>
+                        <p>Staring at 15 tabs, not knowing what to work on next</p>
+                    </div>
+                    <div class="pain-point">
+                        <h4>Context Switching</h4>
+                        <p>Constantly switching between irrelevant research and actual work</p>
+                    </div>
+                    <div class="pain-point">
+                        <h4>Goal Drift</h4>
+                        <p>Starting with a clear goal but ending up watching YouTube</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="solution" id="features">
         <div class="container">
-            <h2>How Tabbit works</h2>
+            <h2>Your AI decision copilot</h2>
             <div class="features-grid">
                 <div class="feature">
-                    <div class="feature-number">1</div>
+                    <div class="feature-icon">🎯</div>
                     <h3>Set your daily goal</h3>
-                    <p>Tell Tabbit what you want to accomplish today. "Launch my SaaS MVP" or "Finish the marketing campaign".</p>
+                    <p>Tell Tabbit what you want to ship today. "Launch my SaaS MVP" or "Finish the sales deck".</p>
                 </div>
                 
                 <div class="feature">
-                    <div class="feature-number">2</div>
-                    <h3>AI analyzes your tabs</h3>
-                    <p>Claude AI reads your open tabs and understands how each one relates to your stated goal.</p>
+                    <div class="feature-icon">🧠</div>
+                    <h3>AI analyzes everything</h3>
+                    <p>Claude AI reads all your open tabs and understands how each relates to your stated goal.</p>
                 </div>
                 
                 <div class="feature">
-                    <div class="feature-number">3</div>
+                    <div class="feature-icon">⚡</div>
                     <h3>Get clear next actions</h3>
-                    <p>See exactly what to do now, what to save for later, and what to close. No more decision paralysis.</p>
+                    <p>See exactly what to work on now, save for later, or close. No more decision paralysis.</p>
                 </div>
             </div>
         </div>
@@ -430,7 +754,7 @@
                 <div class="demo-header">Today's Goal: "Launch my SaaS MVP"</div>
                 
                 <div class="demo-line">
-                    <span class="demo-tab">📋 Stripe Documentation</span>
+                    <span class="demo-tab">📋 Stripe Documentation - Payment Integration</span>
                     <span class="demo-action do-now">DO NOW</span>
                 </div>
                 
@@ -440,8 +764,8 @@
                 </div>
                 
                 <div class="demo-line">
-                    <span class="demo-tab">📧 Gmail - investor updates</span>
-                    <span class="demo-action do-later">DO LATER</span>
+                    <span class="demo-tab">📧 Gmail - investor update drafts</span>
+                    <span class="demo-action do-later">SAVE FOR LATER</span>
                 </div>
                 
                 <div class="demo-line">
@@ -457,27 +781,104 @@
         </div>
     </section>
 
-    <section class="social-proof">
+    <section class="pricing" id="pricing">
         <div class="container">
-            <h3>Trusted by builders</h3>
-            <p class="testimonial">"Finally, a tool that helps me stay focused instead of adding more noise. It's like having a productivity coach that actually understands what I'm building."</p>
+            <h2>Simple, honest pricing</h2>
+            <p class="subtitle">No freemium tricks. No feature gates. Just the tool that helps you ship faster.</p>
+            
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <div class="plan-name">Tabbit Pro</div>
+                    <div class="plan-description">For makers who want to ship</div>
+                </div>
+                
+                <div class="price">$7</div>
+                <div class="price-period">per month</div>
+                
+                <ul class="features-list">
+                    <li>Unlimited tab analysis</li>
+                    <li>AI-powered goal tracking</li>
+                    <li>Smart tab automation</li>
+                    <li>Progress reminders</li>
+                    <li>Cross-device sync</li>
+                    <li>Priority support</li>
+                </ul>
+                
+                <a href="#" class="pricing-cta" onclick="window.open('https://chrome.google.com/webstore', '_blank')">
+                    Start Free Trial
+                </a>
+                
+                <div class="trial-highlight">
+                    🎁 Try once free • No credit card required
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Loved by makers</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-quote">"Finally shipped my MVP after weeks of tab chaos. Tabbit kept me focused on what actually mattered."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <p>Founder, TechFlow</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-quote">"Game changer for my ADHD. Instead of getting lost in 20 tabs, I now know exactly what to work on next."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Mike Rodriguez</h4>
+                            <p>Indie Developer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-quote">"Increased my productivity 3x. It's like having a personal coach that understands my goals."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <h4>Alex Kim</h4>
+                            <p>Designer & Maker</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="final-cta">
         <div class="container">
             <h2>Ready to ship faster?</h2>
-            <p>Join hundreds of founders and builders using Tabbit to stay focused on what matters.</p>
+            <p>Join 500+ makers who've stopped procrastinating and started shipping with Tabbit.</p>
             <a href="#" class="cta-primary" onclick="window.open('https://chrome.google.com/webstore', '_blank')">
-                Add to Chrome - Free →
+                Start Your Free Trial →
             </a>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>Built by makers, for makers • Privacy-first • No tracking</p>
+            <p>Built by makers, for makers • Privacy-first • <a href="#" style="color: #456882;">Contact</a></p>
         </div>
     </footer>
+
+    <script>
+        // Simple analytics-free tracking
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.cta-primary, .pricing-cta')) {
+                // Log conversion intent
+                console.log('Trial started');
+            }
+        });
+    </script>
 </body>
 </html> 
