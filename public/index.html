@@ -3,275 +3,481 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabbit - Turn tab chaos into goal focus</title>
-    <meta name="description" content="AI-powered Chrome extension that analyzes your open tabs and tells you what to do next based on your daily goals. Stop tab overwhelm, start focused productivity.">
+    <title>Tabbit - AI-powered browser productivity</title>
+    <meta name="description" content="AI-powered Chrome extension that analyzes your open tabs and tells you what to do next based on your daily goals. Transform tab chaos into focused productivity.">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #1a1a1a;
-            background: #fefefe;
+            color: #1B3C53;
+            background: #F9F3EF;
+            font-size: 16px;
         }
         
         .container {
-            max-width: 680px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 0 24px;
         }
         
-        .hero {
-            text-align: center;
-            margin-bottom: 80px;
+        /* Header */
+        .header {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(27, 60, 83, 0.1);
+            background: #F9F3EF;
         }
         
-        h1 {
-            font-size: 52px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            line-height: 1.1;
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .subtitle {
+        .logo {
             font-size: 24px;
-            color: #666;
-            margin-bottom: 40px;
-            font-weight: 400;
+            font-weight: 700;
+            color: #1B3C53;
+            text-decoration: none;
         }
         
-        .problem {
-            background: #f8f8f8;
-            padding: 32px;
-            border-radius: 12px;
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: #456882;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            color: #1B3C53;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #F9F3EF 0%, rgba(210, 193, 182, 0.3) 100%);
+        }
+        
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #1B3C53;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero .subtitle {
+            font-size: 24px;
+            color: #456882;
             margin-bottom: 48px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-primary {
+            background: #1B3C53;
+            color: #F9F3EF;
+            border: none;
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 16px;
+        }
+        
+        .cta-primary:hover {
+            background: #456882;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(27, 60, 83, 0.25);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: #1B3C53;
+            border: 2px solid #1B3C53;
+            padding: 18px 38px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .cta-secondary:hover {
+            background: #1B3C53;
+            color: #F9F3EF;
+        }
+        
+        .cta-note {
+            margin-top: 16px;
+            color: #456882;
+            font-size: 14px;
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 80px 0;
+            background: #D2C1B6;
+        }
+        
+        .problem-content {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
         }
         
         .problem h2 {
-            font-size: 20px;
-            margin-bottom: 16px;
-            color: #d73527;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1B3C53;
         }
         
         .problem p {
-            font-size: 16px;
-            color: #666;
+            font-size: 20px;
+            color: #456882;
+            line-height: 1.6;
         }
         
+        /* Solution Section */
         .solution {
-            margin-bottom: 48px;
+            padding: 100px 0;
+            background: #F9F3EF;
         }
         
         .solution h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 48px;
+            font-weight: 700;
             text-align: center;
+            margin-bottom: 64px;
+            color: #1B3C53;
         }
         
-        .features {
+        .features-grid {
             display: grid;
-            gap: 24px;
-            margin-bottom: 48px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 48px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
         .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
+            text-align: center;
+            padding: 40px 32px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            border: 1px solid rgba(27, 60, 83, 0.1);
+            transition: all 0.3s ease;
         }
         
-        .feature-icon {
-            background: #1a1a1a;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            display: flex;
+        .feature:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(27, 60, 83, 0.15);
+        }
+        
+        .feature-number {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            width: 64px;
+            height: 64px;
+            background: #1B3C53;
+            color: #F9F3EF;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        
+        .feature h3 {
+            font-size: 24px;
             font-weight: 600;
-            flex-shrink: 0;
-        }
-        
-        .feature-content h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-        
-        .feature-content p {
-            color: #666;
-            font-size: 16px;
-        }
-        
-        .cta {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        
-        .cta-button {
-            background: #1a1a1a;
-            color: white;
-            border: none;
-            padding: 18px 36px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .cta-button:hover {
-            background: #333;
-            transform: translateY(-1px);
-        }
-        
-        .social-proof {
-            text-align: center;
-            padding: 32px;
-            background: #f0f9ff;
-            border-radius: 12px;
-            margin-bottom: 48px;
-        }
-        
-        .social-proof h3 {
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: #0369a1;
-        }
-        
-        .social-proof p {
-            font-size: 14px;
-            color: #666;
-            font-style: italic;
-        }
-        
-        .demo {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        
-        .demo h3 {
-            font-size: 20px;
             margin-bottom: 16px;
+            color: #1B3C53;
         }
         
-        .demo-box {
-            background: #1a1a1a;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 14px;
-            text-align: left;
+        .feature p {
+            font-size: 16px;
+            color: #456882;
+            line-height: 1.6;
+        }
+        
+        /* Demo Section */
+        .demo {
+            padding: 100px 0;
+            background: #1B3C53;
+        }
+        
+        .demo h2 {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 48px;
+            color: #F9F3EF;
+        }
+        
+        .demo-container {
+            max-width: 800px;
             margin: 0 auto;
-            max-width: 500px;
+            background: rgba(249, 243, 239, 0.95);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .demo-header {
+            background: #456882;
+            color: #F9F3EF;
+            padding: 16px 24px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+            margin: -40px -40px 24px -40px;
         }
         
         .demo-line {
-            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(210, 193, 182, 0.3);
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
         }
         
-        .demo-goal {
-            color: #60a5fa;
+        .demo-line:last-child {
+            border-bottom: none;
         }
         
         .demo-tab {
-            color: #fbbf24;
+            flex: 1;
+            color: #456882;
+            font-weight: 500;
         }
         
         .demo-action {
-            color: #34d399;
+            background: #D2C1B6;
+            color: #1B3C53;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
         }
         
-        footer {
+        .demo-action.do-now {
+            background: #10b981;
+            color: white;
+        }
+        
+        .demo-action.do-later {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .demo-action.close {
+            background: #ef4444;
+            color: white;
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            padding: 80px 0;
+            background: #D2C1B6;
             text-align: center;
-            padding-top: 32px;
-            border-top: 1px solid #eee;
-            color: #666;
+        }
+        
+        .social-proof h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #1B3C53;
+        }
+        
+        .testimonial {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 18px;
+            color: #456882;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            padding: 100px 0;
+            background: #F9F3EF;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1B3C53;
+        }
+        
+        .final-cta p {
+            font-size: 20px;
+            color: #456882;
+            margin-bottom: 48px;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(27, 60, 83, 0.1);
+            background: #F9F3EF;
+            text-align: center;
+            color: #456882;
             font-size: 14px;
         }
         
-        @media (max-width: 640px) {
-            .container { padding: 40px 16px; }
-            h1 { font-size: 40px; }
-            .subtitle { font-size: 20px; }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 48px; }
+            .hero .subtitle { font-size: 20px; }
+            .features-grid { grid-template-columns: 1fr; gap: 32px; }
+            .nav-links { display: none; }
+            .container { padding: 0 16px; }
+            .hero { padding: 80px 0 60px; }
+            .solution, .demo, .final-cta { padding: 60px 0; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
-            <h1>Stop drowning in tabs.<br>Start crushing goals.</h1>
-            <p class="subtitle">AI analyzes your open tabs and tells you exactly what to do next based on your daily goals.</p>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">Tabbit</a>
+                <div class="nav-links">
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#demo" class="nav-link">Demo</a>
+                    <a href="#" class="nav-link">Chrome Store</a>
+                </div>
+            </nav>
         </div>
-        
-        <div class="problem">
-            <h2>The Problem</h2>
-            <p>You open 20+ tabs, lose track of what's important, and end up procrastinating instead of making progress on what actually matters.</p>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Turn tab chaos<br>into goal focus</h1>
+            <p class="subtitle">AI analyzes your open tabs and tells you exactly what to do next based on your daily goals. Stop procrastinating, start shipping.</p>
+            <div style="margin-bottom: 16px;">
+                <a href="#" class="cta-primary" onclick="window.open('https://chrome.google.com/webstore', '_blank')">
+                    Add to Chrome →
+                </a>
+                <a href="#demo" class="cta-secondary">See Demo</a>
+            </div>
+            <p class="cta-note">Free trial • No signup • Works instantly</p>
         </div>
-        
-        <div class="solution">
-            <h2>The Tabbit Solution</h2>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <div class="problem-content">
+                <h2>The $200B productivity problem</h2>
+                <p>Knowledge workers lose 2.5 hours daily to tab switching and context switching. You open 20+ tabs, lose focus, and end up procrastinating instead of shipping what matters.</p>
+            </div>
         </div>
-        
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">1</div>
-                <div class="feature-content">
-                    <h3>Set Your Daily Goal</h3>
-                    <p>Tell Tabbit what you want to accomplish today in plain English.</p>
+    </section>
+
+    <section class="solution" id="features">
+        <div class="container">
+            <h2>How Tabbit works</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-number">1</div>
+                    <h3>Set your daily goal</h3>
+                    <p>Tell Tabbit what you want to accomplish today. "Launch my SaaS MVP" or "Finish the marketing campaign".</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-number">2</div>
+                    <h3>AI analyzes your tabs</h3>
+                    <p>Claude AI reads your open tabs and understands how each one relates to your stated goal.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-number">3</div>
+                    <h3>Get clear next actions</h3>
+                    <p>See exactly what to do now, what to save for later, and what to close. No more decision paralysis.</p>
                 </div>
             </div>
-            
-            <div class="feature">
-                <div class="feature-icon">2</div>
-                <div class="feature-content">
-                    <h3>AI Analyzes Your Tabs</h3>
-                    <p>Claude AI reads your open tabs and figures out how each one relates to your goal.</p>
+        </div>
+    </section>
+
+    <section class="demo" id="demo">
+        <div class="container">
+            <h2>See it in action</h2>
+            <div class="demo-container">
+                <div class="demo-header">Today's Goal: "Launch my SaaS MVP"</div>
+                
+                <div class="demo-line">
+                    <span class="demo-tab">📋 Stripe Documentation</span>
+                    <span class="demo-action do-now">DO NOW</span>
+                </div>
+                
+                <div class="demo-line">
+                    <span class="demo-tab">💻 GitHub - payment-integration branch</span>
+                    <span class="demo-action do-now">DO NOW</span>
+                </div>
+                
+                <div class="demo-line">
+                    <span class="demo-tab">📧 Gmail - investor updates</span>
+                    <span class="demo-action do-later">DO LATER</span>
+                </div>
+                
+                <div class="demo-line">
+                    <span class="demo-tab">🎥 YouTube - "Best productivity tips"</span>
+                    <span class="demo-action close">CLOSE</span>
+                </div>
+                
+                <div class="demo-line">
+                    <span class="demo-tab">📖 React Docs - useEffect hooks</span>
+                    <span class="demo-action do-now">KEEP OPEN</span>
                 </div>
             </div>
-            
-            <div class="feature">
-                <div class="feature-icon">3</div>
-                <div class="feature-content">
-                    <h3>Get Clear Next Actions</h3>
-                    <p>See exactly what to do, what to save for later, and what to close completely.</p>
-                </div>
-            </div>
         </div>
-        
-        <div class="demo">
-            <h3>See It In Action</h3>
-            <div class="demo-box">
-                <div class="demo-line demo-goal">Today's Goal: "Launch my SaaS MVP"</div>
-                <div class="demo-line"></div>
-                <div class="demo-line demo-tab">📋 Stripe Documentation → <span class="demo-action">DO NOW: Set up payment integration</span></div>
-                <div class="demo-line demo-tab">📧 Gmail → <span class="demo-action">DO LATER: Check after coding session</span></div>
-                <div class="demo-line demo-tab">🎥 YouTube → <span class="demo-action">CLOSE: Distraction from main goal</span></div>
-                <div class="demo-line demo-tab">📖 React Docs → <span class="demo-action">KEEP OPEN: Needed for current task</span></div>
-            </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container">
+            <h3>Trusted by builders</h3>
+            <p class="testimonial">"Finally, a tool that helps me stay focused instead of adding more noise. It's like having a productivity coach that actually understands what I'm building."</p>
         </div>
-        
-        <div class="social-proof">
-            <h3>Built by Productivity Nerds</h3>
-            <p>"Finally, a tool that helps me stay focused instead of adding more noise to my workflow. It's like having a productivity coach that actually understands what I'm trying to do."</p>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to ship faster?</h2>
+            <p>Join hundreds of founders and builders using Tabbit to stay focused on what matters.</p>
+            <a href="#" class="cta-primary" onclick="window.open('https://chrome.google.com/webstore', '_blank')">
+                Add to Chrome - Free →
+            </a>
         </div>
-        
-        <div class="cta">
-            <button class="cta-button" onclick="window.open('https://chrome.google.com/webstore', '_blank')">
-                Add to Chrome - Free Trial →
-            </button>
-            <p style="margin-top: 12px; color: #666; font-size: 14px;">
-                1 free analysis • No signup required • Works instantly
-            </p>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Built by makers, for makers • Privacy-first • No tracking</p>
         </div>
-        
-        <footer>
-            <p>Made with focus • Privacy-first • No data tracking</p>
-        </footer>
-    </div>
+    </footer>
 </body>
 </html> 
